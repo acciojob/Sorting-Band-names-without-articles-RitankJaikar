@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Sort Without Articles</title>
-  </head>
-  <body>
-    <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background: url('https://source.unsplash.com/nDqA4d5NL0k/2000x2000');
-        background-size: cover;
-        display: flex;
-        align-items: center;
-        min-height: 100vh;
-      }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Band Names Sorter</title>
+</head>
+<body>
+  <h1>Sorted Band Names</h1>
+  <ul id="band"></ul>
 
-      #bands {
-        list-style: inside square;
-        font-size: 20px;
-        background: white;
-        width: 500px;
-        margin: auto;
-        padding: 0;
-        box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.05);
-      }
+  <script>
+    // Array of band names
+    let bandNames = ['The Beatles', 'Aerosmith', 'An Arctic Monkeys', 'The Rolling Stones', 'Adele'];
 
-      #bands li {
-        border-bottom: 1px solid #efefef;
-        padding: 20px;
-      }
+    // Function to remove articles ('a', 'an', 'the') and sort the band names
+    function stripArticle(name) {
+      return name.replace(/^(a |an |the )/i, '').trim();
+    }
 
-      #bands li:last-child {
-        border-bottom: 0;
-      }
+    // Sort the band names ignoring articles
+    bandNames.sort((a, b) => stripArticle(a).localeCompare(stripArticle(b)));
 
-      a {
-        color: #ffc600;
-        text-decoration: none;
-      }
-    </style>
-
-    <ul></ul>
-
-    <script type="text/javascript" src="./script.js"></script>
-  </body>
+    // Select the 'ul' element and dynamically add sorted names as 'li' elements
+    const bandList = document.getElementById('band');
+    bandNames.forEach(band => {
+      const li = document.createElement('li');
+      li.textContent = band;
+      bandList.appendChild(li);
+    });
+  </script>
+</body>
 </html>
